@@ -1,0 +1,11 @@
+
+java -jar microservices/formacalculo/build/libs/*.jar &
+java -jar microservices/modalidadebase/build/libs/*.jar &  
+java -jar microservices/modalidade/build/libs/*.jar &  
+
+kill $(jobs -p)
+
+
+curl http://localhost:7001/modalidadebase/1 -s | jq .
+curl http://localhost:7002/formacalculo/1 -s | jq .
+curl http://localhost:7002/modalidade/1 -s | jq .

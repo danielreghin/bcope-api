@@ -1,0 +1,16 @@
+server.port: 7000
+server.error.include-message: always
+
+
+app:
+  modalidadebase-service:
+    host: localhost
+    port: 7001
+  formacalculo-service:
+    host: localhost
+    port: 7002
+
+logging:
+  level:
+    root: INFO
+    com.bco.bcope: DEBUG
