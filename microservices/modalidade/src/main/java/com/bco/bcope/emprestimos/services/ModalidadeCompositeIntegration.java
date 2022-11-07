@@ -12,13 +12,13 @@ import org.springframework.web.client.RestTemplate;
 import com.bco.bcope.api.emprestimos.modalidade.dto.FormaCalculoDTO;
 import com.bco.bcope.api.emprestimos.modalidade.dto.ModalidadeBaseDTO;
 import com.bco.bcope.api.emprestimos.modalidade.services.FormaCalculoService;
-import com.bco.bcope.api.emprestimos.modalidade.services.ModalidadeService;
+import com.bco.bcope.api.emprestimos.modalidade.services.ModalidadeBaseService;
 import com.bco.bcope.api.exceptions.InvalidInputException;
 import com.bco.bcope.api.exceptions.NotFoundException;
 import com.bco.bcope.util.http.HttpErrorInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ModalidadeCompositeIntegration implements FormaCalculoService, ModalidadeService {
+public class ModalidadeCompositeIntegration implements FormaCalculoService, ModalidadeBaseService {
     private static final Logger LOG = LoggerFactory.getLogger(ModalidadeCompositeIntegration.class);
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
@@ -60,7 +60,7 @@ public class ModalidadeCompositeIntegration implements FormaCalculoService, Moda
     
 
     @Override
-    public ModalidadeBaseDTO getModalidade(int modalidadeId) {
+    public ModalidadeBaseDTO getModalidadeBase(int modalidadeId) {
         try{
         String url = modalidadeBaseServiceUrl + modalidadeId;
         LOG.debug("Will call getProduct API on URL: {}", url);

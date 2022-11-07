@@ -8,7 +8,7 @@ import com.bco.bcope.api.emprestimos.modalidade.dto.FormaCalculoDTO;
 import com.bco.bcope.api.emprestimos.modalidade.dto.IndexadorDTO;
 import com.bco.bcope.api.emprestimos.modalidade.dto.ModalidadeBaseDTO;
 import com.bco.bcope.api.emprestimos.modalidade.dto.ModalidadeDTO;
-import com.bco.bcope.api.emprestimos.modalidade.services.ModalidadeCompositeService;
+import com.bco.bcope.api.emprestimos.modalidade.services.ModalidadeService;
 import com.bco.bcope.api.emprestimos.modalidade.services.ServiceAddresses;
 import com.bco.bcope.api.exceptions.InvalidInputException;
 import com.bco.bcope.api.exceptions.NotFoundException;
@@ -40,7 +40,7 @@ public class ModalidadeCompositeServiceImpl implements ModalidadeService {
     }
 
     // Cria o objeto
-    ModalidadeBaseDTO modalidadeBase = integration.getModalidade(modalidadeId);
+    ModalidadeBaseDTO modalidadeBase = integration.getModalidadeBase(modalidadeId);
     FormaCalculoDTO formaCalculo = integration.getFormaCalculo(1);
     ServiceAddresses enderecos = new ServiceAddresses(formaCalculo.getServiceAddress(),"",modalidadeBase.getServiceAddress());
     

@@ -1,4 +1,4 @@
-package com.bco.bcope.emprestimos;
+package com.bco.bcope.modalidadebase;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
