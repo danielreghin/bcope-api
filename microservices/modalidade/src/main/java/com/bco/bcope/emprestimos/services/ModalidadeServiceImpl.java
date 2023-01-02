@@ -3,6 +3,7 @@ package com.bco.bcope.emprestimos.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bco.bcope.api.emprestimos.modalidade.dto.FormaCalculoDTO;
 import com.bco.bcope.api.emprestimos.modalidade.dto.IndexadorDTO;
@@ -14,17 +15,18 @@ import com.bco.bcope.api.exceptions.InvalidInputException;
 import com.bco.bcope.api.exceptions.NotFoundException;
 import com.bco.bcope.util.http.ServiceUtil;
 
-public class ModalidadeCompositeServiceImpl implements ModalidadeService {
+@RestController
+public class ModalidadeServiceImpl implements ModalidadeService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(ModalidadeCompositeServiceImpl.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ModalidadeServiceImpl.class);
   private final ServiceUtil serviceUtil;
-  private final ModalidadeCompositeIntegration integration;
+  private final ModalidadeIntegration integration;
 
   @Autowired
-  public ModalidadeCompositeServiceImpl(ServiceUtil serviceUtil,
-      ModalidadeCompositeIntegration modalidadeCompositeIntegration) {
+  public ModalidadeServiceImpl(ServiceUtil serviceUtil,
+      ModalidadeIntegration modalidadeIntegration) {
     this.serviceUtil = serviceUtil;
-    this.integration = modalidadeCompositeIntegration;
+    this.integration = modalidadeIntegration;
   }
 
   @Override
@@ -40,13 +42,12 @@ public class ModalidadeCompositeServiceImpl implements ModalidadeService {
     }
 
     // Cria o objeto
-    ModalidadeBaseDTO modalidadeBase = integration.getModalidadeBase(modalidadeId);
     FormaCalculoDTO formaCalculo = integration.getFormaCalculo(1);
+    ModalidadeBaseDTO modalidadeBase = integration.getModalidadeBase(modalidadeId);
+    IndexadorDTO indexador = new IndexadorDTO(1, "teste", serviceUtil.getServiceAddress());
     ServiceAddresses enderecos = new ServiceAddresses(formaCalculo.getServiceAddress(),"",modalidadeBase.getServiceAddress());
-    
+    ModalidadeDTO modalidade = new ModalidadeDTO(modalidadeBase,indexador, formaCalculo, enderecos);
 
-    ModalidadeDTO modalidade = new ModalidadeDTO(modalidadeBase,
-        new IndexadorDTO(1, "teste", serviceUtil.getServiceAddress()), formaCalculo, enderecos);
     return modalidade;
   }
 

@@ -1,0 +1,22 @@
+version: '2.1'
+
+services:
+  formacalculo:
+    build: microservices/formacalculo
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  modalidadebase:
+    build: microservices/modalidadebase
+    mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  
+  modalidade:
+    build: microservices/modalidade
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker

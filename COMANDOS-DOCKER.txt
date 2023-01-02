@@ -1,0 +1,65 @@
+
+###########################################
+# DOCKER
+###########################################
+docker run -it --rm ubuntu
+# -it -> interagir usando o terminal
+# --rm -> remover após sair do terminr
+
+docker ps -a
+# ps -> mostra containers
+# -a -> mostra container parados tb
+
+docker rm -f $(docker ps -aq)
+# Remove todos os containers
+# -q -> só mostra os ids
+
+echo 'Runtime.getRuntime().availableProcessors()' | docker run --rm -i --cpus=3 adoptopenjdk:16 jshell -q
+# --cpus=3 -> limita o uso de cpus para o java
+
+docker run -it --rm -m=1024M adoptopenjdk:16 java -XX:+PrintFlagsFinal | grep "size_t MaxHeapSize"
+# -m=1024M -> Container utilizará 1GB e o Java Heap Size será de 1/4 disso.
+
+docker run -it --rm -m=1024M adoptopenjdk:16 java -Xmx600m -XX:+PrintFlagsFinal -version | grep "size_t MaxHeapSize"
+# -Xmx600m limita em 600Mb o Java Heap Size
+
+docker build -t formacalculo .
+# gera uma imagem em docker e grava na engine do docker.
+
+docker scan
+# para procurar vulnerabilidades
+
+docker images | grep formacalculo
+# para encontrar as imagens
+
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" formacalculo
+# Executa uma imagem. 
+# -e "SPRING_PROFILES_ACTIVE=docker" -> Diz qual configuração do yaml nós queremos
+# -p8080:8080 mapeia a porta no container para a porta no host.
+
+docker run -d -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" --name my-prd-srv formacalculo
+# -d -> Não trava o terminal
+# -name -> dá um nome para facilitar o envio de comandos como:
+
+docker logs my-prd-srv -f
+# -f -> atualiza a saída sempre que vier um novo registro.
+# --tail 0 -> somente os novos
+# --since 5m -> Desde 5 minutos atrás
+
+docker rm -f my-prd-srv
+# rm -> remove o container
+# -f -> força a remover mesmo se estiver rodando. Nesse caso irá tentar parar.
+
+docker-compose build
+# Constrói a imagem utilizando o arquivo docker-compose.yml 
+# o arquivo diz qual API será exposta.
+
+docker-compose up -d
+# Sobe todos os containers no modelo -d
+
+docker-compose logs -f <nomedaimagem>
+# Mesma coisa do docker, se quiser adicionar o nome da imagem, ok.
+
+docker-compose down
+# Encerrrar o docker compose
+

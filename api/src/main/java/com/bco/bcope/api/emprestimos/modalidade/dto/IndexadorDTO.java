@@ -6,6 +6,7 @@ public class IndexadorDTO {
     private final String indexadorNome;
     private final String serviceAddress;
 
+
     public IndexadorDTO(int indexadorId, String indexadorNome,String serviceAddress) {
         this.indexadorId = indexadorId;
         this.indexadorNome = indexadorNome;
@@ -21,5 +22,9 @@ public class IndexadorDTO {
         return indexadorNome;
     }
            
+    
+    public String getServiceAddress() {
+        return serviceAddress;
+    }
 
 }

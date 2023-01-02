@@ -18,6 +18,8 @@ ext {
 dependencies {
     implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springdoc:springdoc-openapi-common:1.5.9'
+    implementation "io.swagger.core.v3:swagger-annotations:2.1.10"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

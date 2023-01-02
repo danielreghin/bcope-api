@@ -1,6 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.5'
-	id 'io.spring.dependency-management' version '1.1.0'
+	//id 'org.springframework.boot' version '2.7.5'
+	//id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+
 	id 'java'
 }
 
@@ -19,10 +22,12 @@ jar {
 dependencies {
     implementation project(':api')
     implementation project(':util')
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.5.9'
+    implementation "io.swagger.core.v3:swagger-annotations:2.1.10"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
 }
 
 tasks.named('test') {

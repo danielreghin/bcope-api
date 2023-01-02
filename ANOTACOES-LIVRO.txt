@@ -1,4 +1,13 @@
-
  1) From a DevOps perspective, a multi-project setup might not be preferred. Instead, to enable each microservice to have its own build and release cycle, setting up a separate build pipeline for each microservice project would probably be preferred
  2) It is debatable whether it is good practice to store API definitions for a group of microservices in a common API module. It could potentially cause undesired dependencies between the microservices, resulting in monolithic characteristics, for example, causing a more complex and slow development process. To me, it is a good choice for microservices that are part of the same delivery organization, that is, whose releases are governed by the same organization
  3) Again, from a DevOps perspective, it would be preferable to build all the projects in their own build pipeline and have version-controlled dependencies for the api and util projects in the microservice projects, that is, so that each microservice can choose what versions of the api and util projects to use
+
+Capítulo 3
+Pulei a etapa de testes integrados
+
+Capítulo 4
+
+Verificar como o empacotamento do java em um container docker pode ser melhor organizado
+no livro fala que algumas distribuições levam mais tempo para serem extraídas.
+
+Pulei a etapa de testes integrados.

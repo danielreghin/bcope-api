@@ -3,6 +3,7 @@ package com.bco.bcope.modalidadebase.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bco.bcope.api.emprestimos.modalidade.dto.ModalidadeBaseDTO;
 import com.bco.bcope.api.emprestimos.modalidade.services.ModalidadeBaseService;
@@ -10,6 +11,7 @@ import com.bco.bcope.api.exceptions.InvalidInputException;
 import com.bco.bcope.api.exceptions.NotFoundException;
 import com.bco.bcope.util.http.ServiceUtil;
 
+@RestController
 public class ModalidadeBaseServiceImpl implements ModalidadeBaseService {
 
   private static final Logger LOG = LoggerFactory.getLogger(ModalidadeBaseServiceImpl.class);
